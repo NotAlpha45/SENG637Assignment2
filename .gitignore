@@ -13,11 +13,13 @@ buildNumber.properties
 
 # Java
 *.class
-*.jar
 *.war
 *.ear
 *.log
 hs_err_pid*
+
+# Allow lib folder JARs for university assignment dependencies
+!lib/*.jar
 
 # IntelliJ IDEA
 .idea/
