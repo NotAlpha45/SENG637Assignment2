@@ -7,6 +7,52 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-        <exec.mainClass>org.maheen.assignment2testing.ProjectName</exec.mainClass>
+        <exec.mainClass>org.maheen.assignment2testing.SENG637Assignment2</exec.mainClass>
     </properties>
+    
+    <dependencies>
+        <!-- JFreeChart - Provided JAR -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/jfreechart.jar</systemPath>
+        </dependency>
+        
+        <!-- JCommon - Required by JFreeChart -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.5</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/jcommon-1.0.5.jar</systemPath>
+        </dependency>
+        
+        <!-- JUnit for testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/junit.jar</systemPath>
+        </dependency>
+        
+        <!-- Hamcrest - JUnit dependency -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/hamcrest-core-1.1.jar</systemPath>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>1.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/hamcrest-library-1.1.jar</systemPath>
+        </dependency>
+    </dependencies>
 </project>
