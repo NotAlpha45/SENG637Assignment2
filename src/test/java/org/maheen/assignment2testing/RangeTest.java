@@ -17,13 +17,13 @@ public class RangeTest {
      *
      * #####################################################
      *
-     * Test suite forRange class Method: getCentralValue()
+     * Test suite for Range class Method: getCentralValue()
      *
      * #####################################################
      */
     /**
      * Test getCentralValue() with a positive range Equivalence Class: Positive
-     * ranges Expected: Returns midpoint (5.0)
+     * ranges Expected: Returns midpoint (4.0)
      */
     @Test
     public void testGetCentralValueWithPositiveRange() {
@@ -35,7 +35,7 @@ public class RangeTest {
 
     /**
      * Test getCentralValue() with a negative range Equivalence Class: Negative
-     * ranges Expected: Returns midpoint (-5.0)
+     * ranges Expected: Returns midpoint (-4.0)
      */
     @Test
     public void testGetCentralValueWithNegativeRange() {
@@ -221,6 +221,253 @@ public class RangeTest {
         Range range = new Range(-10.0, 0.0);
         double result = range.getLength();
         assertEquals("Length of range [-10.0, 0.0] should be 10.0",
+                10.0, result, 0.0000001d);
+    }
+    //#endregion
+
+    //#region contains() tests
+    /**
+     * *
+     * #####################################################
+     *
+     * Test suite for Range class Method: contains()
+     *
+     * #####################################################
+     */
+    /**
+     * Test contains() with a value below the lower bound Boundary Value: Just
+     * below Expected: Returns false (value is not contained)
+     */
+    @Test
+    public void testContainsBelowLowerBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(1.0);
+        assertEquals("Range [2.0, 6.0] should not contain 1.0",
+                false, result);
+    }
+
+    /**
+     * Test contains() with a value at the lower bound Boundary Value: Just at
+     * lower bound Expected: Returns true (value is contained)
+     */
+    @Test
+    public void testContainsAtLowerBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(2.0);
+        assertEquals("Range [2.0, 6.0] should contain 2.0",
+                true, result);
+    }
+
+    /**
+     * Test contains() with a value just after the lower bound Boundary Value:
+     * Just after lower bound Expected: Returns true (value is contained)
+     */
+    @Test
+    public void testContainsJustAfterLowerBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(2.1);
+        assertEquals("Range [2.0, 6.0] should contain 2.1",
+                true, result);
+    }
+
+    /**
+     * Test contains() with the midpoint value Boundary Value: NOM (midpoint of
+     * range) Equivalence Class: V3 — lower < value < upper (within range)
+     * Expected: Returns true
+     */
+    @Test
+    public void testContainsAtNominalMidpoint() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(4.0);
+        assertEquals("Range [2.0, 6.0] should contain 4.0",
+                true, result);
+    }
+
+    /**
+     * Test contains() with a value just before the upper bound Boundary Value:
+     * Just before upper bound Expected: Returns true (value is contained)
+     */
+    @Test
+    public void testContainsJustBeforeUpperBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(5.9);
+        assertEquals("Range [2.0, 6.0] should contain 5.9",
+                true, result);
+    }
+
+    /**
+     * Test contains() with a value exactly at the upper bound Boundary Value:
+     * UB (upper) Equivalence Class: V4 — value = upper Expected: Returns true
+     */
+    @Test
+    public void testContainsAtUpperBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(6.0);
+        assertEquals("Range [2.0, 6.0] should contain 6.0",
+                true, result);
+    }
+
+    /**
+     * Test contains() with a value just above the upper bound Boundary Value:
+     * AUB (upper + 1) Equivalence Class: V5 — value > upper (above range)
+     * Expected: Returns false
+     */
+    @Test
+    public void testContainsAboveUpperBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(7.0);
+        assertEquals("Range [2.0, 6.0] should not contain 7.0",
+                false, result);
+    }
+
+    /**
+     * Test contains() with a very small range Boundary Value Expected: Returns
+     * true for values within the small range
+     */
+    @Test
+    public void testContainsWithVerySmallRange() {
+        Range range = new Range(0.0000002, 0.0000006);
+        boolean result = range.contains(0.0000004);
+        assertEquals("Range [0.0000002, 0.0000006] should contain 0.0000004",
+                true, result);
+    }
+
+    /**
+     * Test contains() with a large range Boundary Value: Large positive values
+     * Expected: Returns true for values within the large range
+     */
+    @Test
+    public void testContainsWithLargeRange() {
+        Range range = new Range(2000000.0, 6000000.0);
+        boolean result = range.contains(4000000.0);
+        assertEquals("Range [2000000.0, 6000000.0] should contain 4000000.0",
+                true, result);
+    }
+
+    //#endregion
+    //#region constrain() tests
+    /**
+     * *
+     * #####################################################
+     *
+     * Test suite for Range class Method: constrain()
+     *
+     * #####################################################
+     */
+    /**
+     * Test constrain() with a value below the lower bound Boundary Value: BLB
+     * (lower - 1) Equivalence Class: V1 — value < lower (clamped to lower)
+     * Expected: Returns -5.0 (lower bound)
+     */
+    @Test
+    public void testConstrainBelowLowerBound() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(-6.0);
+        assertEquals("Constrain of -6.0 on range [-5.0, 10.0] should return -5.0",
+                -5.0, result, 0.0000001d);
+    }
+
+    /**
+     * Test constrain() with a value exactly at the lower bound Boundary Value:
+     * LB (lower) Equivalence Class: V2 — value = lower (already at boundary, no
+     * clamping) Expected: Returns -5.0
+     */
+    @Test
+    public void testConstrainAtLowerBound() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(-5.0);
+        assertEquals("Constrain of -5.0 on range [-5.0, 10.0] should return -5.0",
+                -5.0, result, 0.0000001d);
+    }
+
+    /**
+     * Test constrain() with a value just above the lower bound Boundary Value:
+     * ALB (lower + 1) Equivalence Class: V3 — lower < value < upper (within
+     * range, returned as-is) Expected: Returns -4.0
+     */
+    @Test
+    public void testConstrainAboveLowerBound() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(-4.0);
+        assertEquals("Constrain of -4.0 on range [-5.0, 10.0] should return -4.0",
+                -4.0, result, 0.0000001d);
+    }
+
+    /**
+     * Test constrain() with the midpoint value Boundary Value: NOM (midpoint of
+     * range) Equivalence Class: V3 — lower < value < upper (within range,
+     * returned as-is) Expected: Returns 2.5
+     */
+    @Test
+    public void testConstrainAtNominalMidpoint() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(2.5);
+        assertEquals("Constrain of 2.5 on range [-5.0, 10.0] should return 2.5",
+                2.5, result, 0.0000001d);
+    }
+
+    /**
+     * Test constrain() with a value just below the upper bound Boundary Value:
+     * BUB (upper - 1) Equivalence Class: V3 — lower < value < upper (within
+     * range, returned as-is) Expected: Returns 9.0
+     */
+    @Test
+    public void testConstrainBelowUpperBound() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(9.0);
+        assertEquals("Constrain of 9.0 on range [-5.0, 10.0] should return 9.0",
+                9.0, result, 0.0000001d);
+    }
+
+    /**
+     * Test constrain() with a value exactly at the upper bound Boundary Value:
+     * UB (upper) Equivalence Class: V4 — value = upper (already at boundary, no
+     * clamping) Expected: Returns 10.0
+     */
+    @Test
+    public void testConstrainAtUpperBound() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(10.0);
+        assertEquals("Constrain of 10.0 on range [-5.0, 10.0] should return 10.0",
+                10.0, result, 0.0000001d);
+    }
+
+    /**
+     * Test constrain() with a value just above the upper bound Boundary Value:
+     * AUB (upper + 1) Equivalence Class: V5 — value > upper (clamped to upper)
+     * Expected: Returns 10.0 (upper bound)
+     */
+    @Test
+    public void testConstrainAboveUpperBound() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(11.0);
+        assertEquals("Constrain of 11.0 on range [-5.0, 10.0] should return 10.0",
+                10.0, result, 0.0000001d);
+    }
+
+    /**
+     * Test constrain() with a very large negative value Boundary Value: Far
+     * below LB Equivalence Class: V1 — value < lower (clamped to lower)
+     * Expected: Returns -5.0 (lower bound)
+     */
+    @Test
+    public void testConstrainWithVeryLargeNegativeValue() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(-9999999.0);
+        assertEquals("Constrain of -9999999.0 on range [-5.0, 10.0] should return -5.0",
+                -5.0, result, 0.0000001d);
+    }
+
+    /**
+     * Test constrain() with a very large positive value Boundary Value: Far
+     * above UB Equivalence Class: V5 — value > upper (clamped to upper)
+     * Expected: Returns 10.0 (upper bound)
+     */
+    @Test
+    public void testConstrainWithVeryLargePositiveValue() {
+        Range range = new Range(-5.0, 10.0);
+        double result = range.constrain(9999999.0);
+        assertEquals("Constrain of 9999999.0 on range [-5.0, 10.0] should return 10.0",
                 10.0, result, 0.0000001d);
     }
     //#endregion
