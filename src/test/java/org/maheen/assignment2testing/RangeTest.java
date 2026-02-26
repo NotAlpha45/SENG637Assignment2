@@ -258,6 +258,17 @@ public class RangeTest {
                 true, result);
     }
 
+    /**
+     * Test contains() with a value just after the lower bound Boundary Value: Just after lower bound
+     * Expected: Returns true (value is contained)
+     */
+    @Test
+    public void testContainsJustAfterLowerBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(2.1);
+        assertEquals("Range [2.0, 6.0] should contain 2.1",
+                true, result);
+    }
 
     /**
      * Test contains() with the midpoint value Boundary Value: NOM (midpoint of range) Equivalence Class: V3 — lower < value < upper (within range)
@@ -271,6 +282,17 @@ public class RangeTest {
                 true, result);
     }
 
+    /**
+     * Test contains() with a value just before the upper bound Boundary Value:
+     * Just before upper bound Expected: Returns true (value is contained)
+     */
+    @Test
+    public void testContainsJustBeforeUpperBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(5.9);
+        assertEquals("Range [2.0, 6.0] should contain 5.9",
+                true, result);
+    }
 
     /**
      * Test contains() with a value exactly at the upper bound Boundary Value: UB (upper) Equivalence Class: V4 — value = upper
