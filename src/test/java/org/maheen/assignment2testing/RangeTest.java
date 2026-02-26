@@ -224,4 +224,77 @@ public class RangeTest {
                 10.0, result, 0.0000001d);
     }
     //#endregion
+
+    //#region contains() tests
+    /**
+     * *
+     * #####################################################
+     *
+     * Test suite for Range class Method: contains()
+     *
+     * #####################################################
+     */
+    /**
+     * Test contains() with a value below the lower bound Boundary Value: Just below
+     * Expected: Returns false (value is not contained)
+     */
+    @Test
+    public void testContainsBelowLowerBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(1.0);
+        assertEquals("Range [2.0, 6.0] should not contain 1.0",
+                false, result);
+    }
+
+    /**
+     * Test contains() with a value at the lower bound Boundary Value: Just at lower bound
+     * Expected: Returns true (value is contained)
+     */
+    @Test
+    public void testContainsAtLowerBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(2.0);
+        assertEquals("Range [2.0, 6.0] should contain 2.0",
+                true, result);
+    }
+
+
+    /**
+     * Test contains() with the midpoint value Boundary Value: NOM (midpoint of range) Equivalence Class: V3 — lower < value < upper (within range)
+     * Expected: Returns true
+     */
+    @Test
+    public void testContainsAtNominalMidpoint() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(4.0);
+        assertEquals("Range [2.0, 6.0] should contain 4.0",
+                true, result);
+    }
+
+
+    /**
+     * Test contains() with a value exactly at the upper bound Boundary Value: UB (upper) Equivalence Class: V4 — value = upper
+     * Expected: Returns true
+     */
+    @Test
+    public void testContainsAtUpperBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(6.0);
+        assertEquals("Range [2.0, 6.0] should contain 6.0",
+                true, result);
+    }
+
+    /**
+     * Test contains() with a value just above the upper bound Boundary Value: AUB (upper + 1) Equivalence Class: V5 — value > upper (above range)
+     * Expected: Returns false
+     */
+    @Test
+    public void testContainsAboveUpperBound() {
+        Range range = new Range(2.0, 6.0);
+        boolean result = range.contains(7.0);
+        assertEquals("Range [2.0, 6.0] should not contain 7.0",
+                false, result);
+    }
+
+    //#endregion
 }
