@@ -17,13 +17,13 @@ public class RangeTest {
      *
      * #####################################################
      *
-     * Test suite forRange class Method: getCentralValue()
+     * Test suite for Range class Method: getCentralValue()
      *
      * #####################################################
      */
     /**
      * Test getCentralValue() with a positive range Equivalence Class: Positive
-     * ranges Expected: Returns midpoint (5.0)
+     * ranges Expected: Returns midpoint (4.0)
      */
     @Test
     public void testGetCentralValueWithPositiveRange() {
@@ -35,7 +35,7 @@ public class RangeTest {
 
     /**
      * Test getCentralValue() with a negative range Equivalence Class: Negative
-     * ranges Expected: Returns midpoint (-5.0)
+     * ranges Expected: Returns midpoint (-4.0)
      */
     @Test
     public void testGetCentralValueWithNegativeRange() {
@@ -355,7 +355,8 @@ public class RangeTest {
      * #####################################################
      */
     /**
-     * Test constrain() with a value below the lower bound Boundary Value:
+     * Test constrain() with a value below the lower bound Boundary Value: BLB
+     * (lower - 1) Equivalence Class: V1 — value < lower (clamped to lower)
      * Expected: Returns -5.0 (lower bound)
      */
     @Test
@@ -367,8 +368,9 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with a value exactly at the lower bound Boundary Value
-     * Expected: Returns -5.0 (lower bound)
+     * Test constrain() with a value exactly at the lower bound Boundary Value:
+     * LB (lower) Equivalence Class: V2 — value = lower (already at boundary, no
+     * clamping) Expected: Returns -5.0
      */
     @Test
     public void testConstrainAtLowerBound() {
@@ -379,8 +381,9 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with a value just above the lower bound Boundary Value
-     * Expected: Returns -4.0
+     * Test constrain() with a value just above the lower bound Boundary Value:
+     * ALB (lower + 1) Equivalence Class: V3 — lower < value < upper (within
+     * range, returned as-is) Expected: Returns -4.0
      */
     @Test
     public void testConstrainAboveLowerBound() {
@@ -391,8 +394,9 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with the midpoint value Boundary Value Expected: Returns
-     * 2.5
+     * Test constrain() with the midpoint value Boundary Value: NOM (midpoint of
+     * range) Equivalence Class: V3 — lower < value < upper (within range,
+     * returned as-is) Expected: Returns 2.5
      */
     @Test
     public void testConstrainAtNominalMidpoint() {
@@ -403,8 +407,9 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with a value just below the upper bound Boundary Value
-     * Expected: Returns 9.0
+     * Test constrain() with a value just below the upper bound Boundary Value:
+     * BUB (upper - 1) Equivalence Class: V3 — lower < value < upper (within
+     * range, returned as-is) Expected: Returns 9.0
      */
     @Test
     public void testConstrainBelowUpperBound() {
@@ -415,8 +420,9 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with a value exactly at the upper bound Boundary Value
-     * Expected: Returns 10.0
+     * Test constrain() with a value exactly at the upper bound Boundary Value:
+     * UB (upper) Equivalence Class: V4 — value = upper (already at boundary, no
+     * clamping) Expected: Returns 10.0
      */
     @Test
     public void testConstrainAtUpperBound() {
@@ -427,8 +433,9 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with a value just above the upper bound Boundary Value
-     * Expected: Returns 10.0
+     * Test constrain() with a value just above the upper bound Boundary Value:
+     * AUB (upper + 1) Equivalence Class: V5 — value > upper (clamped to upper)
+     * Expected: Returns 10.0 (upper bound)
      */
     @Test
     public void testConstrainAboveUpperBound() {
@@ -439,23 +446,25 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with a very small value Expected: Returns the lower
-     * bound for values below lower bound
+     * Test constrain() with a very large negative value Boundary Value: Far
+     * below LB Equivalence Class: V1 — value < lower (clamped to lower)
+     * Expected: Returns -5.0 (lower bound)
      */
     @Test
-    public void testConstrainWithVerySmallRange() {
-        Range range = new Range(-5.0, 10);
+    public void testConstrainWithVeryLargeNegativeValue() {
+        Range range = new Range(-5.0, 10.0);
         double result = range.constrain(-9999999.0);
         assertEquals("Constrain of -9999999.0 on range [-5.0, 10.0] should return -5.0",
                 -5.0, result, 0.0000001d);
     }
 
     /**
-     * Test constrain() with a very large value Expected: Returns the upper
-     * bound for values above the upper bound
+     * Test constrain() with a very large positive value Boundary Value: Far
+     * above UB Equivalence Class: V5 — value > upper (clamped to upper)
+     * Expected: Returns 10.0 (upper bound)
      */
     @Test
-    public void testConstrainWithLargeRange() {
+    public void testConstrainWithVeryLargePositiveValue() {
         Range range = new Range(-5.0, 10.0);
         double result = range.constrain(9999999.0);
         assertEquals("Constrain of 9999999.0 on range [-5.0, 10.0] should return 10.0",
