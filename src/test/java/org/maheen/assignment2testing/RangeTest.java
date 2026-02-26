@@ -5,10 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * Unit tests for org.jfree.data.Range class
- * Testing methodology: Boundary Value Analysis and Weak Equivalence Class
- * Testing
- * 
+ * Unit tests for org.jfree.data.Range class Testing methodology: Boundary Value
+ * Analysis and Weak Equivalence Class Testing
+ *
  * @author Maheen
  */
 public class RangeTest {
@@ -19,9 +18,8 @@ public class RangeTest {
     public static class GetCentralValueTests {
 
         /**
-         * Test getCentralValue() with a positive range
-         * Equivalence Class: Positive ranges
-         * Expected: Returns midpoint (5.0)
+         * Test getCentralValue() with a positive range Equivalence Class:
+         * Positive ranges Expected: Returns midpoint (5.0)
          */
         @Test
         public void testWithPositiveRange() {
@@ -32,9 +30,8 @@ public class RangeTest {
         }
 
         /**
-         * Test getCentralValue() with a negative range
-         * Equivalence Class: Negative ranges
-         * Expected: Returns midpoint (-5.0)
+         * Test getCentralValue() with a negative range Equivalence Class:
+         * Negative ranges Expected: Returns midpoint (-5.0)
          */
         @Test
         public void testWithNegativeRange() {
@@ -45,9 +42,9 @@ public class RangeTest {
         }
 
         /**
-         * Test getCentralValue() with a range crossing zero
-         * Equivalence Class: Ranges spanning positive and negative values
-         * Expected: Returns midpoint (0.0)
+         * Test getCentralValue() with a range crossing zero Equivalence Class:
+         * Ranges spanning positive and negative values Expected: Returns
+         * midpoint (0.0)
          */
         @Test
         public void testCrossingZero() {
@@ -58,9 +55,8 @@ public class RangeTest {
         }
 
         /**
-         * Test getCentralValue() with equal lower and upper bounds
-         * Boundary Value: Lower == Upper
-         * Expected: Returns the same value
+         * Test getCentralValue() with equal lower and upper bounds Boundary
+         * Value: Lower == Upper Expected: Returns the same value
          */
         @Test
         public void testWithEqualBounds() {
@@ -71,9 +67,9 @@ public class RangeTest {
         }
 
         /**
-         * Test getCentralValue() with a very small range
-         * Boundary Value: Minimum practical range
-         * Expected: Returns accurate midpoint despite small values
+         * Test getCentralValue() with a very small range Boundary Value:
+         * Minimum practical range Expected: Returns accurate midpoint despite
+         * small values
          */
         @Test
         public void testWithVerySmallRange() {
@@ -84,22 +80,20 @@ public class RangeTest {
         }
 
         /**
-         * Test getCentralValue() with a large range
-         * Boundary Value: Large positive values
-         * Expected: Returns accurate midpoint for large numbers
+         * Test getCentralValue() with a large range Boundary Value: Large
+         * positive values Expected: Returns accurate midpoint for large numbers
          */
         @Test
         public void testWithLargeRange() {
-            Range range = new Range(1000000.0, -1000000.0);
+            Range range = new Range(-1000000.0, 1000000.0);
             double result = range.getCentralValue();
-            assertEquals("Central value of range [1000000.0, -1000000.0] should be 0.0",
+            assertEquals("Central value of range [-1000000.0, 1000000.0] should be 0.0",
                     0.0, result, 0.0000001d);
         }
 
         /**
-         * Test getCentralValue() with decimal precision
-         * Boundary Value: Non-integer boundaries
-         * Expected: Handles decimal precision correctly
+         * Test getCentralValue() with decimal precision Boundary Value:
+         * Non-integer boundaries Expected: Handles decimal precision correctly
          */
         @Test
         public void testWithDecimals() {
@@ -116,9 +110,8 @@ public class RangeTest {
     public static class GetLengthTests {
 
         /**
-         * Test getLength() with a positive range
-         * Equivalence Class: Positive ranges
-         * Expected: Returns length (4.0)
+         * Test getLength() with a positive range Equivalence Class: Positive
+         * ranges Expected: Returns length (4.0)
          */
         @Test
         public void testWithPositiveRange() {
@@ -129,9 +122,8 @@ public class RangeTest {
         }
 
         /**
-         * Test getLength() with a negative range
-         * Equivalence Class: Negative ranges
-         * Expected: Returns positive length (4.0)
+         * Test getLength() with a negative range Equivalence Class: Negative
+         * ranges Expected: Returns positive length (4.0)
          */
         @Test
         public void testWithNegativeRange() {
@@ -142,9 +134,9 @@ public class RangeTest {
         }
 
         /**
-         * Test getLength() with a range crossing zero
-         * Equivalence Class: Ranges spanning positive and negative values
-         * Expected: Returns total span (10.0)
+         * Test getLength() with a range crossing zero Equivalence Class: Ranges
+         * spanning positive and negative values Expected: Returns total span
+         * (10.0)
          */
         @Test
         public void testCrossingZero() {
@@ -155,9 +147,8 @@ public class RangeTest {
         }
 
         /**
-         * Test getLength() with equal lower and upper bounds
-         * Boundary Value: Lower == Upper
-         * Expected: Returns zero
+         * Test getLength() with equal lower and upper bounds Boundary Value:
+         * Lower == Upper Expected: Returns zero
          */
         @Test
         public void testWithEqualBounds() {
@@ -168,9 +159,9 @@ public class RangeTest {
         }
 
         /**
-         * Test getLength() with a very small range
-         * Boundary Value: Minimum practical range
-         * Expected: Returns accurate length for very small values
+         * Test getLength() with a very small range Boundary Value: Minimum
+         * practical range Expected: Returns accurate length for very small
+         * values
          */
         @Test
         public void testWithVerySmallRange() {
@@ -181,9 +172,8 @@ public class RangeTest {
         }
 
         /**
-         * Test getLength() with a large range
-         * Boundary Value: Large positive values
-         * Expected: Returns accurate length for large numbers
+         * Test getLength() with a large range Boundary Value: Large positive
+         * values Expected: Returns accurate length for large numbers
          */
         @Test
         public void testWithLargeRange() {
@@ -194,9 +184,8 @@ public class RangeTest {
         }
 
         /**
-         * Test getLength() with decimal boundaries
-         * Boundary Value: Non-integer boundaries
-         * Expected: Handles decimal precision correctly
+         * Test getLength() with decimal boundaries Boundary Value: Non-integer
+         * boundaries Expected: Handles decimal precision correctly
          */
         @Test
         public void testWithDecimals() {
@@ -207,9 +196,8 @@ public class RangeTest {
         }
 
         /**
-         * Test getLength() with zero as lower bound
-         * Boundary Value: Zero boundary
-         * Expected: Returns upper bound value
+         * Test getLength() with zero as lower bound Boundary Value: Zero
+         * boundary Expected: Returns upper bound value
          */
         @Test
         public void testWithZeroLowerBound() {
@@ -220,9 +208,8 @@ public class RangeTest {
         }
 
         /**
-         * Test getLength() with zero as upper bound
-         * Boundary Value: Zero boundary
-         * Expected: Returns absolute value of lower bound
+         * Test getLength() with zero as upper bound Boundary Value: Zero
+         * boundary Expected: Returns absolute value of lower bound
          */
         @Test
         public void testWithZeroUpperBound() {
