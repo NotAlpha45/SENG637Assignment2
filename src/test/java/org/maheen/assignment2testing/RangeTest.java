@@ -12,6 +12,15 @@ import org.junit.Test;
  */
 public class RangeTest {
 
+    //#region getCentralValue() tests
+    /**
+     *
+     * #####################################################
+     *
+     * Test suite forRange class Method: getCentralValue()
+     *
+     * #####################################################
+     */
     /**
      * Test getCentralValue() with a positive range Equivalence Class: Positive
      * ranges Expected: Returns midpoint (5.0)
@@ -96,7 +105,17 @@ public class RangeTest {
         assertEquals("Central value of range [1.5, 4.5] should be 3.0",
                 3.0, result, 0.0000001d);
     }
+    //#endregion
 
+    //#region getLength() tests
+    /**
+     * *
+     * #####################################################
+     *
+     * Test suite for Range class Method: getLength()
+     *
+     * #####################################################
+     */
     /**
      * Test getLength() with a positive range Equivalence Class: Positive ranges
      * Expected: Returns length (4.0)
@@ -204,4 +223,5 @@ public class RangeTest {
         assertEquals("Length of range [-10.0, 0.0] should be 10.0",
                 10.0, result, 0.0000001d);
     }
+    //#endregion
 }
