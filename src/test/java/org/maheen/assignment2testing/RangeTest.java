@@ -17,13 +17,13 @@ public class RangeTest {
      *
      * #####################################################
      *
-     * Test suite forRange class Method: getCentralValue()
+     * Test suite for Range class Method: getCentralValue()
      *
      * #####################################################
      */
     /**
      * Test getCentralValue() with a positive range Equivalence Class: Positive
-     * ranges Expected: Returns midpoint (5.0)
+     * ranges Expected: Returns midpoint (4.0)
      */
     @Test
     public void testGetCentralValueWithPositiveRange() {
@@ -35,7 +35,7 @@ public class RangeTest {
 
     /**
      * Test getCentralValue() with a negative range Equivalence Class: Negative
-     * ranges Expected: Returns midpoint (-5.0)
+     * ranges Expected: Returns midpoint (-4.0)
      */
     @Test
     public void testGetCentralValueWithNegativeRange() {
@@ -391,8 +391,8 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with the midpoint value Boundary Value 
-     * Expected: Returns 2.5
+     * Test constrain() with the midpoint value Boundary Value Expected: Returns
+     * 2.5
      */
     @Test
     public void testConstrainAtNominalMidpoint() {
@@ -439,8 +439,8 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with a very small value Expected: Returns the lower bound for values below lower bound
-     * Expected: Returns -5.0
+     * Test constrain() with a very small value Expected: Returns the lower
+     * bound for values below lower bound Expected: Returns -5.0
      */
     @Test
     public void testConstrainWithVerySmallRange() {
@@ -451,8 +451,8 @@ public class RangeTest {
     }
 
     /**
-     * Test constrain() with a very large value Expected: Returns the upper bound for values above the upper bound
-     * Expected: Returns 10.0
+     * Test constrain() with a very large value Expected: Returns the upper
+     * bound for values above the upper bound Expected: Returns 10.0
      */
     @Test
     public void testConstrainWithLargeRange() {
@@ -472,8 +472,7 @@ public class RangeTest {
      * #####################################################
      */
     /**
-     * Test intersects() with an overlapping range 
-     * Expected: Returns true
+     * Test intersects() with an overlapping range Expected: Returns true
      */
     @Test
     public void testIntersectsWithOverlappingRange() {
@@ -484,8 +483,8 @@ public class RangeTest {
     }
 
     /**
-     * Test intersects() with a range touching the lower boundary 
-     * Expected: Returns true
+     * Test intersects() with a range touching the lower boundary Expected:
+     * Returns true
      */
     @Test
     public void testIntersectsWithTouchingLowerBoundary() {
@@ -496,8 +495,8 @@ public class RangeTest {
     }
 
     /**
-     * Test intersects() with a range touching the upper boundary 
-     * Expected: Returns true
+     * Test intersects() with a range touching the upper boundary Expected:
+     * Returns true
      */
     @Test
     public void testIntersectsWithTouchingUpperBoundary() {
@@ -508,8 +507,8 @@ public class RangeTest {
     }
 
     /**
-     * Test intersects() with a disjoint range entirely to the left \
-     * Expected: Returns false
+     * Test intersects() with a disjoint range entirely to the left \ Expected:
+     * Returns false
      */
     @Test
     public void testIntersectsWithDisjointLeftRange() {
@@ -520,7 +519,7 @@ public class RangeTest {
     }
 
     /**
-     * Test intersects() with a disjoint range entirely to the right 
+     * Test intersects() with a disjoint range entirely to the right
      * Expected:Returns false
      */
     @Test
@@ -532,8 +531,7 @@ public class RangeTest {
     }
 
     /**
-     * Test intersects() with an identical range 
-     * Expected: Returns true
+     * Test intersects() with an identical range Expected: Returns true
      */
     @Test
     public void testIntersectsWithIdenticalRange() {
