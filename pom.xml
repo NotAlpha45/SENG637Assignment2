@@ -54,5 +54,88 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/JFreeChart/lib/hamcrest-library-1.1.jar</systemPath>
         </dependency>
+
+        <dependency>
+            <groupId>org.beanshell</groupId>
+            <artifactId>bsh-core</artifactId>
+            <version>2.0b4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/bsh-core-2.0b4.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.1_3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/cglib-2.1_3-src.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>2.1_3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/cglib-nodep-2.1_3.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>gnujaxp</groupId>
+            <artifactId>gnujaxp</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/gnujaxp.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.0-rc1-cvs</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/jcommon-1.0.0-rc1-cvs.jar</systemPath>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.objenesis</groupId>
+            <artifactId>objenesis</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/objenesis-1.0.jar</systemPath>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/servlet.jar</systemPath>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock</artifactId>
+            <version>2.5.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/jMock/jmock-2.5.1.jar</systemPath>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>2.5.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/jMock/jmock-junit4-2.5.1.jar</systemPath>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-script</artifactId>
+            <version>2.5.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JFreeChart/lib/jMock/jmock-script-2.5.1.jar</systemPath>
+        </dependency>
+
+
+        
     </dependencies>
 </project>
