@@ -8,7 +8,7 @@ import org.junit.Test;
  * Unit tests for org.jfree.data.Range class Testing methodology: Boundary Value
  * Analysis and Weak Equivalence Class Testing
  *
- * @author Maheen
+ * @author Maheen and Dipu
  */
 public class RangeTest {
 
