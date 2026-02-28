@@ -122,7 +122,7 @@ public class DataUtilitiesTest {
                 allowing(values).getRowCount();
                 will(returnValue(1));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
+                will(returnValue(10_000));
                 allowing(values).getValue(0, 0);
                 will(returnValue(0.0));
             }
@@ -142,11 +142,13 @@ public class DataUtilitiesTest {
         context.checking(new Expectations() {
             {
                 allowing(values).getRowCount();
-                will(returnValue(1));
-                allowing(values).getColumnCount();
                 will(returnValue(2));
+                allowing(values).getColumnCount();
+                will(returnValue(10_000));
                 allowing(values).getValue(0, 1);
-                will(returnValue(0.0));
+                will(returnValue(-1.0));
+                allowing(values).getValue(1, 1);
+                will(returnValue(1.0));
             }
         });
 
@@ -165,11 +167,13 @@ public class DataUtilitiesTest {
         context.checking(new Expectations() {
             {
                 allowing(values).getRowCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getColumnCount();
-                will(returnValue(501));
+                will(returnValue(10_000));
                 allowing(values).getValue(0, 500);
-                will(returnValue(0.0));
+                will(returnValue(-1.0));
+                allowing(values).getValue(1, 500);
+                will(returnValue(1.0));
             }
         });
 
@@ -188,11 +192,13 @@ public class DataUtilitiesTest {
         context.checking(new Expectations() {
             {
                 allowing(values).getRowCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getColumnCount();
-                will(returnValue(Integer.MAX_VALUE - 1));
+                will(returnValue(Integer.MAX_VALUE));
                 allowing(values).getValue(0, Integer.MAX_VALUE - 2);
-                will(returnValue(0.0));
+                will(returnValue(-1.0));
+                allowing(values).getValue(1, Integer.MAX_VALUE - 2);
+                will(returnValue(1.0));
             }
         });
 
@@ -212,11 +218,13 @@ public class DataUtilitiesTest {
         context.checking(new Expectations() {
             {
                 allowing(values).getRowCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getColumnCount();
                 will(returnValue(Integer.MAX_VALUE));
                 allowing(values).getValue(0, Integer.MAX_VALUE - 1);
-                will(returnValue(0.0));
+                will(returnValue(-1.0));
+                allowing(values).getValue(1, Integer.MAX_VALUE - 1);
+                will(returnValue(1.0));
             }
         });
 
@@ -236,11 +244,13 @@ public class DataUtilitiesTest {
         context.checking(new Expectations() {
             {
                 allowing(values).getRowCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getColumnCount();
-                will(returnValue(501));
+                will(returnValue(10_000));
                 allowing(values).getValue(0, 500);
-                will(returnValue(-Double.MAX_VALUE));
+                will(returnValue((-Double.MAX_VALUE) / 2));
+                allowing(values).getValue(1, 500);
+                will(returnValue((-Double.MAX_VALUE) / 2));
             }
         });
 
@@ -261,11 +271,13 @@ public class DataUtilitiesTest {
         context.checking(new Expectations() {
             {
                 allowing(values).getRowCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getColumnCount();
-                will(returnValue(501));
+                will(returnValue(10_000));
                 allowing(values).getValue(0, 500);
-                will(returnValue(val));
+                will(returnValue(val / 2));
+                allowing(values).getValue(1, 500);
+                will(returnValue(val / 2));
             }
         });
 
@@ -286,11 +298,13 @@ public class DataUtilitiesTest {
         context.checking(new Expectations() {
             {
                 allowing(values).getRowCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getColumnCount();
-                will(returnValue(501));
+                will(returnValue(10_000));
                 allowing(values).getValue(0, 500);
-                will(returnValue(val));
+                will(returnValue(val / 2));
+                allowing(values).getValue(1, 500);
+                will(returnValue(val / 2));
             }
         });
 
@@ -305,19 +319,22 @@ public class DataUtilitiesTest {
      */
     @Test
     public void test_calculateColumnTotal_bvt_9() {
+        double val = Double.MAX_VALUE;
         Values2D values = context.mock(Values2D.class);
         context.checking(new Expectations() {
             {
                 allowing(values).getRowCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getColumnCount();
-                will(returnValue(501));
+                will(returnValue(10_000));
                 allowing(values).getValue(0, 500);
-                will(returnValue(Double.MAX_VALUE));
+                will(returnValue(val / 2));
+                allowing(values).getValue(1, 500);
+                will(returnValue(val / 2));
             }
         });
 
-        assertEquals(Double.MAX_VALUE,
+        assertEquals(val,
                 DataUtilities.calculateColumnTotal(values, 500),
                 0.000000001d);
     }
@@ -398,6 +415,8 @@ public class DataUtilitiesTest {
         Values2D values = context.mock(Values2D.class);
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(10_000));
                 allowing(values).getColumnCount();
                 will(returnValue(1));
                 allowing(values).getValue(0, 0);
@@ -418,13 +437,16 @@ public class DataUtilitiesTest {
         Values2D values = context.mock(Values2D.class);
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(10_000));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getValue(1, 0);
-                will(returnValue(0.0));
+                will(returnValue(-1.0));
+                allowing(values).getValue(1, 1);
+                will(returnValue(1.0));
             }
         });
-
         assertEquals(0.0,
                 DataUtilities.calculateRowTotal(values, 1),
                 0.000000001d);
@@ -438,15 +460,19 @@ public class DataUtilitiesTest {
         Values2D values = context.mock(Values2D.class);
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(10_000));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
-                allowing(values).getValue(499, 0);
-                will(returnValue(0.0));
+                will(returnValue(2));
+                allowing(values).getValue(500, 0);
+                will(returnValue(-1.0));
+                allowing(values).getValue(500, 1);
+                will(returnValue(1.0));
             }
         });
 
         assertEquals(0.0,
-                DataUtilities.calculateRowTotal(values, 499),
+                DataUtilities.calculateRowTotal(values, 500),
                 0.000000001d);
     }
 
@@ -459,10 +485,14 @@ public class DataUtilitiesTest {
         Values2D values = context.mock(Values2D.class);
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(Integer.MAX_VALUE));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getValue(Integer.MAX_VALUE - 2, 0);
-                will(returnValue(0.0));
+                will(returnValue(-1.0));
+                allowing(values).getValue(Integer.MAX_VALUE - 2, 1);
+                will(returnValue(1.0));
             }
         });
 
@@ -481,10 +511,14 @@ public class DataUtilitiesTest {
         Values2D values = context.mock(Values2D.class);
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(Integer.MAX_VALUE));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getValue(Integer.MAX_VALUE - 1, 0);
-                will(returnValue(0.0));
+                will(returnValue(-1.0));
+                allowing(values).getValue(Integer.MAX_VALUE - 1, 1);
+                will(returnValue(1.0));
             }
         });
 
@@ -503,10 +537,14 @@ public class DataUtilitiesTest {
         Values2D values = context.mock(Values2D.class);
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(10_000));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getValue(500, 0);
-                will(returnValue(-Double.MAX_VALUE));
+                will(returnValue((-Double.MAX_VALUE) / 2));
+                allowing(values).getValue(500, 1);
+                will(returnValue((-Double.MAX_VALUE) / 2));
             }
         });
 
@@ -526,10 +564,14 @@ public class DataUtilitiesTest {
 
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(10_000));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getValue(500, 0);
-                will(returnValue(val));
+                will(returnValue(val / 2));
+                allowing(values).getValue(500, 1);
+                will(returnValue(val / 2));
             }
         });
 
@@ -549,10 +591,14 @@ public class DataUtilitiesTest {
 
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(10_000));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getValue(500, 0);
-                will(returnValue(val));
+                will(returnValue(val / 2));
+                allowing(values).getValue(500, 1);
+                will(returnValue(val / 2));
             }
         });
 
@@ -567,17 +613,22 @@ public class DataUtilitiesTest {
      */
     @Test
     public void test_calculateRowTotal_bvt_9() {
+        double val = Double.MAX_VALUE;
         Values2D values = context.mock(Values2D.class);
         context.checking(new Expectations() {
             {
+                allowing(values).getRowCount();
+                will(returnValue(10_000));
                 allowing(values).getColumnCount();
-                will(returnValue(1));
+                will(returnValue(2));
                 allowing(values).getValue(500, 0);
-                will(returnValue(Double.MAX_VALUE));
+                will(returnValue(val / 2));
+                allowing(values).getValue(500, 1);
+                will(returnValue(val / 2));
             }
         });
 
-        assertEquals(Double.MAX_VALUE,
+        assertEquals(val,
                 DataUtilities.calculateRowTotal(values, 500),
                 0.000000001d);
     }
